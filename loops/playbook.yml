@@ -1,0 +1,13 @@
+---
+- hosts: web
+  become: yes
+
+  tasks:
+    - name: add several users
+      user:
+        name: "{{ item }}"
+        state: present
+        groups: "vagrant"
+      loop:
+        - testuser1
+        - testuser2

@@ -1,0 +1,11 @@
+---
+- hosts: web
+  vars:
+    http_port: 80
+  
+  tasks:
+    - debug: msg="HTTPS port is {{ http_port  }}"
+    - debug: msg="{{ ansible_facts['nodename'] }}"
+    - debug: msg="{{ ansible_facts["eth0"]["ipv4"]["address"] }}"
+    - debug: msg="{{ ansible_facts['vagrant']['ansible_facts']['distribution'] }}"
+      
