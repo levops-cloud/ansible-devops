@@ -1,5 +1,5 @@
 ---
-- hosts: web
+- hosts: all
   become: true
   tasks:
     - name: Make sure we can connect
@@ -43,13 +43,13 @@
     - debug: msg="No change to root password"
       when: not mysql_new_root_pass.changed 
     - name: Remove anonymous users
-      mysql_user: name="" state=absent
+      mysql_user: name="" state=absent login_unix_socket=/var/run/mysqld/mysqld.sock
       when: mysql_new_root_pass.changed
     - name: Remove test database
-      mysql_db: name=test state=absent
+      mysql_db: name=test state=absent login_unix_socket=/var/run/mysqld/mysqld.sock
       when: mysql_new_root_pass.changed
     - name: Update root password
-      mysql_user: name=root host={{item}} password={{mysql_new_root_pass.stdout}}
+      mysql_user: name=root host={{item}} password={{mysql_new_root_pass.stdout}} login_unix_socket=/var/run/mysqld/mysqld.sock
       with_items:
         - "{{ ansible_hostname }}"
         - 127.0.0.1
