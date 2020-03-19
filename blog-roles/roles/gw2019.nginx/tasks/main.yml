@@ -6,8 +6,8 @@
     state: stopped
 - name: Install nginx
   apt: 
-    pkg:
-      name: nginx 
+    name: nginx 
+    state: present
 - name: Start nginx
   service: name=nginx state=started
 - name: Create nginx config
