@@ -1,0 +1,35 @@
+---
+# MySQL
+- name: Make Sure pymysql is present
+  pip:
+    name: pymysql
+    state: present
+- name: Install MySQL
+  apt:
+    pkg:
+      - mysql-server
+      - python-mysqldb 
+    state: present
+- name: Generate new root password
+  command: openssl rand -hex 7 creates=/root/.my.cnf
+  register: mysql_new_root_pass
+- name: Remove anonymous users
+  mysql_user: name="" state=absent login_unix_socket=/var/run/mysqld/mysqld.sock
+  when: mysql_new_root_pass.changed
+- name: Remove test database
+  mysql_db: name=test state=absent login_unix_socket=/var/run/mysqld/mysqld.sock
+  when: mysql_new_root_pass.changed
+- name: Output new root password
+  debug: msg="New root password is {{mysql_new_root_pass.stdout}}" 
+  when: mysql_new_root_pass.changed
+- name: Update root password
+  mysql_user: name=root host={{item}} password={{mysql_new_root_pass.stdout}} login_unix_socket=/var/run/mysqld/mysqld.sock
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  when: mysql_new_root_pass.changed
+- name: Create my. cnf
+  template: src=my.cnf dest=/root/.my.cnf
+  when: mysql_new_root_pass.changed

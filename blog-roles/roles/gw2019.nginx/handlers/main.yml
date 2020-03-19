@@ -1,0 +1,5 @@
+---
+# handlers file for mheap.nginx
+- name: restart nginx
+  service: name=nginx state=restarted
+# handlers file for gw2019.nginx
