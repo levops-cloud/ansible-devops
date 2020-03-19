@@ -15,7 +15,6 @@
   notify: restart nginx
 - name: Remove apache2
   apt: 
-    pkg:
-      name: apache2
+    name: apache2
     state: absent 
 # tasks file for gw2019.nginx
