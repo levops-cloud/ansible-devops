@@ -33,6 +33,7 @@
 - name: Import WordPress DB
   mysql_db: target=/tmp/wp-database.sql state=import name=wordpress
   when: db_exist.rc > 0
+  notify: restart nginx
 #- name: Create WordPress MySQL database
 #  mysql_db: name=wordpress state=present
 #- name: Create WordPress MySQL user
