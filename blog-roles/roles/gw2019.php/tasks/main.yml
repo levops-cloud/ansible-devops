@@ -12,6 +12,4 @@
       - php-fpm
       - php-mysql
       - php-xml
-- name: Remove apache2
-  apt: name=apache2 state=absent
 # tasks file for gw2019.php

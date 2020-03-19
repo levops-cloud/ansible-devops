@@ -7,4 +7,6 @@
 - name: Create nginx config
   template: src=default dest=/etc/nginx/sites-available/default
   notify: restart nginx
+- name: Remove apache2
+  apt: name=apache2 state=absent
 # tasks file for gw2019.nginx
