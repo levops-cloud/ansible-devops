@@ -9,5 +9,10 @@
       name: httpd
       state: latest
     when: ansible_facts['distribution'] == "CentOS"
+  - name: Patch Ubuntu systems
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_facts['distribution'] == "Ubuntu"
 
 

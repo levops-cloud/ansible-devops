@@ -1,6 +1,6 @@
 ---
 - name: Simple loop demo play
-  hosts: frt01.example.com
+  hosts: master
 
   tasks:
     - name: Echo a value from the loop

@@ -1,0 +1,9 @@
+---
+- name: Simple loop demo play
+  hosts: master
+
+  tasks:
+    - name: Echo a value from the loop
+      debug: 
+        msg: "{{ item[0] }} --- {{ item[1] }}"
+      loop: "{{ ['alice', 'bob'] |product(['clientdb', 'employeedb', 'providerdb'])|list }}"

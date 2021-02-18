@@ -1,0 +1,6 @@
+---
+app_user: "lev"
+http_host: "web.conf"
+http_conf: "web.conf"
+http_port: "80"
+disable_default: true
