@@ -1,0 +1,12 @@
+---
+- name: Install Jenkins
+  hosts: web
+
+  roles:
+    - role: lean_delivery.java
+      transport: repositories
+      java_major_version: 8      
+      become: yes
+    - role: lean_delivery.jenkins
+      become: yes
+

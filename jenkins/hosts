@@ -1,0 +1,4 @@
+
+master ansible_host=127.0.0.1 ansible_port=22  
+[web]
+web  ansible_host=192.168.50.5 ansible_port=22
