@@ -1,6 +1,0 @@
----
-roles:
-  - name: geerlingguy.git
-  - name: geerlingguy.ruby
-  - name: geerlingguy.nodejs
-  - name: geerlingguy.passenger
