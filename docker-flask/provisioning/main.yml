@@ -4,7 +4,7 @@
   become: true
 
   vars:
-    build_root: /vagrant/provisioning
+    build_root: ./
 
   pre_tasks:
     - name: Update apt cache if needed.
